@@ -1,0 +1,12 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{@apply bg-surface text-ink antialiased font-sans}
+h1,h2,h3{@apply font-display tracking-tight}
+:focus-visible{@apply outline-2 outline-offset-2 outline-electric}
+.btn{@apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition duration-200 active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-50}
+.btn-p{@apply btn bg-electric text-white shadow-sm hover:bg-blue-700}
+.btn-y{@apply btn bg-volt text-navy hover:bg-yellow-300}
+.btn-o{@apply btn border border-slate-200 bg-white text-ink hover:border-electric hover:text-electric}
+.inp{@apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm transition focus:border-electric focus:ring-4 focus:ring-electric/10}
+.card{@apply rounded-2xl border border-slate-200/70 bg-white shadow-soft}
+.hero-bg{background:radial-gradient(600px 300px at 85% 10%,rgba(37,99,255,.45),transparent 70%),radial-gradient(400px 260px at 10% 100%,rgba(255,201,40,.18),transparent 70%),linear-gradient(135deg,#050d1f,#0a1f44)}
+.grid-bg{background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse at 70% 30%,#000,transparent 75%)}

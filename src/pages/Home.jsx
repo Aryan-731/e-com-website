@@ -1,0 +1,26 @@
+import {Link} from 'react-router-dom';import {ArrowRight,ShieldCheck,Truck,BadgeCheck,Headphones,Mail} from 'lucide-react';
+import ProductCard from '../components/ProductCard';import {CAT_ICONS} from '../components/icons';
+import {CATEGORIES,PRODUCTS,BRANDS} from '../data/products';import {useTitle} from '../utils';import {STORE} from '../config';
+const Head=({eyebrow,title,to})=><div className="mb-6 flex items-end justify-between"><div><p className="text-xs font-bold uppercase tracking-widest text-electric">{eyebrow}</p><h2 className="text-2xl font-bold md:text-3xl">{title}</h2></div>
+{to&&<Link to={to} className="hidden items-center gap-1 text-sm font-semibold text-electric sm:flex">View all <ArrowRight size={16}/></Link>}</div>;
+export default function Home(){useTitle('Home',STORE.tagline);const best=[...PRODUCTS].sort((a,b)=>b.rating-a.rating).slice(0,4);const nw=[...PRODUCTS].sort((a,b)=>b.createdAt-a.createdAt).slice(0,4);
+const why=[[BadgeCheck,'Quality you can trust','Carefully chosen electrical products'],[ShieldCheck,'Safety first','MCBs, wires and protection essentials'],[Truck,'Local delivery','Details to be confirmed by the store'],[Headphones,'Friendly help','Ask us before you buy']];
+return(<div>
+<section className="hero-bg relative overflow-hidden"><div className="grid-bg absolute inset-0"/>
+<div className="relative mx-auto max-w-7xl px-4 py-16 md:py-28"><span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-volt backdrop-blur">Hajipur · Vaishali · Bihar</span>
+<h1 className="mt-5 max-w-2xl text-4xl font-extrabold leading-[1.1] text-white md:text-6xl">NIRBHAY ELECTRIC <span className="text-volt">&</span> ELECTRONIC </h1>
+<p className="mt-4 max-w-lg text-slate-300 md:text-lg">Lighting, switches, fans, safety gear and home electronics, all in one place.</p>
+<div className="mt-8 flex flex-wrap gap-3"><Link to="/products" className="btn-y !px-7 !py-3.5">Shop Now <ArrowRight size={16}/></Link><Link to="/products" className="btn !border !border-white/25 !px-7 !py-3.5 text-white hover:bg-white/10">Explore Products</Link></div></div></section>
+<div className="mx-auto max-w-7xl space-y-16 px-4 pt-12">
+<section><Head eyebrow="Browse" title="Shop by Category"/><div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+{CATEGORIES.map(c=>{const I=CAT_ICONS[c.slug];return<Link key={c.slug} to={`/category/${c.slug}`} className="card group flex flex-col items-start gap-3 p-4 transition hover:-translate-y-1 hover:border-electric/40 hover:shadow-lift">
+<span className="grid h-11 w-11 place-items-center rounded-xl bg-blue-50 text-electric transition group-hover:bg-electric group-hover:text-white"><I size={22}/></span><span className="text-sm font-semibold leading-snug">{c.name}</span></Link>;})}</div></section>
+<section><Head eyebrow="Popular" title="Best Sellers" to="/products"/><div className="grid grid-cols-2 gap-4 lg:grid-cols-4">{best.map(p=><ProductCard key={p.id} p={p}/>)}</div><p className="mt-2 text-xs text-slate-400">Sample ranking, not real sales data.</p></section>
+<section className="hero-bg relative overflow-hidden rounded-3xl p-8 text-white md:p-12"><p className="text-xs font-bold uppercase tracking-widest text-volt">Special offers</p><h2 className="mt-2 max-w-md text-2xl font-bold md:text-4xl">Smart savings on everyday electricals</h2>
+<p className="mt-2 text-sm text-slate-300">Sample promotional banner for demo.</p><Link to="/offers" className="btn-y mt-5">View offers</Link></section>
+<section><Head eyebrow="Just in" title="New Arrivals" to="/products"/><div className="grid grid-cols-2 gap-4 lg:grid-cols-4">{nw.map(p=><ProductCard key={p.id} p={p}/>)}</div></section>
+<section><Head eyebrow="Brands" title="Featured Brands"/><div className="flex flex-wrap gap-2">{BRANDS.map(b=><Link key={b} to={`/products?q=${b}`} className="card px-5 py-2.5 text-sm font-semibold transition hover:border-electric hover:text-electric">{b}</Link>)}</div></section>
+<section><Head eyebrow="Why us" title="Why Choose Us"/><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{why.map(([I,t,d])=><div key={t} className="card p-5"><span className="grid h-11 w-11 place-items-center rounded-xl bg-amber-50 text-amber-600"><I size={22}/></span><h3 className="mt-3 text-base font-bold">{t}</h3><p className="mt-1 text-sm text-slate-500">{d}</p></div>)}</div></section>
+<section><Head eyebrow="Feedback" title="Customer Reviews"/><div className="card p-6"><span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-bold">DEMO CONTENT</span><p className="mt-3 text-slate-500">Placeholder review text. Replace with real, verified customer reviews.</p></div></section>
+<section className="card flex flex-col items-start gap-4 p-6 md:flex-row md:items-center md:justify-between md:p-8"><div><h2 className="flex items-center gap-2 text-xl font-bold"><Mail className="text-electric"/>Stay in the loop</h2><p className="text-sm text-slate-500">Get offers and new arrivals (demo form).</p></div>
+<form onSubmit={e=>{e.preventDefault();alert('Demo only: no subscription saved.');}} className="flex w-full gap-2 md:max-w-md"><input type="email" required aria-label="Email" placeholder="Your email" className="inp"/><button className="btn-p">Subscribe</button></form></section></div></div>);}
