@@ -1,3 +1,7 @@
+
+open now :- https://aryan-shop.netlify.app/
+
+
 # Nirbhay Electric & Electronic (frontend demo)
 Setup: `npm install` then `npm run dev`. Build: `npm run build` (deploy `dist/` to Netlify/Vercel/any static host; add an SPA fallback to index.html).
 Edit contact/WhatsApp in `src/config.js`, products in `src/data/products.js` (all sample data).
